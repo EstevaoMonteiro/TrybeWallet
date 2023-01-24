@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { disabledButton } from '../redux/actions';
+import { disabledButton, editSentence } from '../redux/actions';
 
 class Table extends Component {
   isDisabled = (item) => {
@@ -12,7 +12,7 @@ class Table extends Component {
   };
 
   render() {
-    const { expenses } = this.props;
+    const { expenses, dispatch } = this.props;
     return (
       <table>
         <tr>
@@ -45,6 +45,13 @@ class Table extends Component {
                   <td>{(+multiple).toFixed(2)}</td>
                   <td>{index}</td>
                   <td>
+                    <button
+                      type="submit"
+                      data-testid="edit-btn"
+                      onClick={ () => dispatch(editSentence(id)) }
+                    >
+                      Editar
+                    </button>
                     <button
                       type="button"
                       value={ id }
