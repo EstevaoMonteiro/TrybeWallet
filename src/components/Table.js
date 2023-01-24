@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
+// commit de teste.
 class Table extends Component {
   render() {
     const { expenses } = this.props;
