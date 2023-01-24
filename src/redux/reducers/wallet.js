@@ -1,4 +1,4 @@
-import { RESOURCES_DONE, EXPENSES_SENTENCE } from '../actions';
+import { RESOURCES_DONE, EXPENSES_SENTENCE, EXPENSES_DISABLED_BUTTON } from '../actions';
 
 const INITIAL_STATE = {
   currencies: [],
@@ -19,6 +19,12 @@ const wallet = (state = INITIAL_STATE, action) => {
       ...state,
       expenses: [...state.expenses, action.payload],
     };
+  case EXPENSES_DISABLED_BUTTON:
+    return {
+      ...state,
+      expenses: action.payload,
+    };
+
   default: return state;
   }
 };

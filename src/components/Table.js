@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { disabledButton } from '../redux/actions';
 
 class Table extends Component {
+  isDisabled = (item) => {
+    const { expenses, dispatch } = this.props;
+    const diference = (index) => index.id !== item;
+    const element = expenses.filter(diference);
+    dispatch(disabledButton(element));
+  };
+
   render() {
     const { expenses } = this.props;
     return (
@@ -36,6 +44,16 @@ class Table extends Component {
                   <td>{(+swap).toFixed(2)}</td>
                   <td>{(+multiple).toFixed(2)}</td>
                   <td>{index}</td>
+                  <td>
+                    <button
+                      type="button"
+                      value={ id }
+                      onClick={ () => { this.isDisabled(id); } }
+                      data-testid="delete-btn"
+                    >
+                      Excluir
+                    </button>
+                  </td>
                 </tr>
               );
             })
@@ -51,7 +69,8 @@ const mapStateToProps = (state) => ({
 });
 
 Table.propTypes = {
-  expenses: PropTypes.array,
+  expenses: PropTypes.instanceOf(Array),
+  dispatch: PropTypes.func,
 }.isRequired;
 
 export default connect(mapStateToProps)(Table);

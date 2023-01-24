@@ -4,6 +4,7 @@ export const ADD_EMAIL = 'ADD_EMAIL';
 export const RESOURCES_SENTENCE = 'RESOURCES_SENTENCE';
 export const RESOURCES_DONE = 'REQUEST_COINSUCESS';
 export const EXPENSES_SENTENCE = 'EXPENSES_SENTENCE';
+export const EXPENSES_DISABLED_BUTTON = 'EXPENSES_DISABLED_BUTTON';
 
 export const emailSentence = (email) => ({
   type: ADD_EMAIL,
@@ -42,3 +43,8 @@ export const expensesSentence = async (dispatch, expense) => {
     },
   });
 };
+
+export const disabledButton = (payload) => ({
+  type: EXPENSES_DISABLED_BUTTON,
+  payload,
+});
